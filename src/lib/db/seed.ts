@@ -1,8 +1,13 @@
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
 import bcrypt from "bcryptjs";
 import { users, categories } from "./schema";
 
+const databaseUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("POSTGRES_URL or DATABASE_URL environment variable is not set");
+}
+const sql = neon(databaseUrl);
 const db = drizzle(sql);
 
 // 预设支出分类

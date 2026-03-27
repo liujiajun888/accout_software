@@ -1,9 +1,14 @@
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
 
-// 使用 Vercel Postgres 连接
+const databaseUrl = process.env.POSTGRES_URL || process.env.DATABASE_URL;
+
+if (!databaseUrl) {
+  throw new Error("POSTGRES_URL or DATABASE_URL environment variable is not set");
+}
+
+const sql = neon(databaseUrl);
 export const db = drizzle(sql, { schema });
 
-// 导出 schema 供其他地方使用
 export { schema };
