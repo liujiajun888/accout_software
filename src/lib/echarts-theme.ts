@@ -169,10 +169,10 @@ export const echartsTheme = {
 };
 
 // 收入/支出专用颜色
-export const incomeColor = '#10b981'; // emerald-500
-export const expenseColor = '#f43f5e'; // rose-500
-export const incomeColorLight = 'rgba(16, 185, 129, 0.15)';
-export const expenseColorLight = 'rgba(244, 63, 94, 0.15)';
+export const incomeColor = '#34d399'; // emerald-400
+export const expenseColor = '#fb7185'; // rose-400
+export const incomeColorLight = 'rgba(52, 211, 153, 0.15)';
+export const expenseColorLight = 'rgba(251, 113, 133, 0.15)';
 
 // 金额格式化
 export function formatCurrency(value: number): string {

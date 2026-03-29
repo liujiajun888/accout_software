@@ -28,11 +28,11 @@ export function MobileNav() {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-border z-50 safe-area-pb">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 glass border-t border-white/[0.06] z-50 safe-area-pb">
       <div className="flex items-center justify-around h-full px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const isActive = pathname === item.href || (pathname.startsWith(`${item.href}/`) && !navItems.some((other) => other.href !== item.href && other.href.startsWith(`${item.href}/`) && (pathname === other.href || pathname.startsWith(`${other.href}/`))));
 
           if (item.isCenter) {
             return (
@@ -41,8 +41,8 @@ export function MobileNav() {
                 href={item.href}
                 className={cn(
                   "flex flex-col items-center justify-center -mt-6",
-                  "w-14 h-14 rounded-full bg-primary text-primary-foreground",
-                  "shadow-lg shadow-primary/25 transition-transform duration-200",
+                  "w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white",
+                  "shadow-lg shadow-blue-500/30 transition-transform duration-200",
                   "active:scale-95"
                 )}
               >
@@ -59,8 +59,8 @@ export function MobileNav() {
                 "flex flex-col items-center justify-center w-16 h-full",
                 "transition-colors duration-200",
                 isActive
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                  ? "text-blue-400"
+                  : "text-slate-500"
               )}
             >
               <Icon className="w-5 h-5 mb-1" />

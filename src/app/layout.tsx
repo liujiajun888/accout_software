@@ -1,17 +1,24 @@
 "use client";
 
 import "./globals.css";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
 import { AuthProvider } from "@/components/AuthProvider";
 import { Sidebar } from "@/components/Sidebar";
 import { MobileNav } from "@/components/MobileNav";
 import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const systemFontFamily = [
+  "system-ui",
+  "-apple-system",
+  "BlinkMacSystemFont",
+  '"Segoe UI"',
+  "Roboto",
+  '"Helvetica Neue"',
+  "Arial",
+  '"Noto Sans SC"',
+  '"PingFang SC"',
+  '"Microsoft YaHei"',
+  "sans-serif",
+].join(", ");
 
 export default function RootLayout({
   children,
@@ -19,14 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={cn("font-sans", inter.variable)}>
+    <html lang="zh-CN" className="font-sans">
       <head>
         <title>记账本</title>
         <meta name="description" content="简单好用的个人记账应用" />
       </head>
       <body
-        className={`${inter.variable} antialiased tabular-nums`}
-        style={{ fontFamily: 'var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif' }}
+        className="antialiased tabular-nums"
+        style={{ fontFamily: systemFontFamily }}
       >
         <AuthProvider>
           <Sidebar />

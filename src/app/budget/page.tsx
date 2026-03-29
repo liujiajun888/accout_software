@@ -211,20 +211,20 @@ export default function BudgetPage() {
       return {
         icon: <AlertCircle className="h-4 w-4 text-rose-500" />,
         text: "已超支",
-        className: "text-rose-600",
+        className: "text-rose-400",
       };
     }
     if (percentage >= 80) {
       return {
         icon: <TrendingDown className="h-4 w-4 text-amber-500" />,
         text: "即将超支",
-        className: "text-amber-600",
+        className: "text-amber-400",
       };
     }
     return {
       icon: <CheckCircle2 className="h-4 w-4 text-emerald-500" />,
       text: "正常",
-      className: "text-emerald-600",
+      className: "text-emerald-400",
     };
   };
 
@@ -235,21 +235,21 @@ export default function BudgetPage() {
   }, [categories, budgets]);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen p-4 md:p-6 lg:p-8">
       <div className="mx-auto max-w-4xl space-y-6">
         {/* 页面标题和月份选择 */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-semibold text-[#1a1a1a]">预算管理</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <h1 className="text-2xl font-semibold gradient-text">预算管理</h1>
+            <p className="mt-1 text-sm text-slate-400">
               设置月度预算，掌控支出
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <Select value={selectedMonth} onValueChange={(value) => setSelectedMonth(value || "")}>
-              <SelectTrigger className="w-[160px] bg-white">
-                <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
+              <SelectTrigger className="w-[160px]">
+                <Calendar className="mr-2 h-4 w-4 text-blue-400" />
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -264,19 +264,19 @@ export default function BudgetPage() {
         </div>
 
         {/* 总预算概览卡片 */}
-        <Card className="rounded-xl shadow-sm">
+        <Card className="glass-card">
           <CardContent className="p-6">
             <div className="grid gap-6 sm:grid-cols-3">
               {/* 预算总额 */}
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
                   <PiggyBank className="h-4 w-4" />
                   本月预算总额
                 </div>
                 {loading ? (
                   <div className="h-9 w-32 animate-pulse rounded bg-muted" />
                 ) : (
-                  <div className="text-3xl font-semibold tabular-nums text-[#1a1a1a]">
+                  <div className="text-3xl font-semibold tabular-nums text-slate-200">
                     {formatCurrency(totals.totalBudget)}
                   </div>
                 )}
@@ -284,14 +284,14 @@ export default function BudgetPage() {
 
               {/* 实际支出 */}
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
                   <TrendingDown className="h-4 w-4" />
                   实际支出
                 </div>
                 {loading ? (
                   <div className="h-9 w-32 animate-pulse rounded bg-muted" />
                 ) : (
-                  <div className="text-3xl font-semibold tabular-nums text-rose-600">
+                  <div className="text-3xl font-semibold tabular-nums text-rose-400">
                     {formatCurrency(totals.totalExpense)}
                   </div>
                 )}
@@ -299,7 +299,7 @@ export default function BudgetPage() {
 
               {/* 剩余可用 */}
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
                   <Wallet className="h-4 w-4" />
                   剩余可用
                 </div>
@@ -308,7 +308,7 @@ export default function BudgetPage() {
                 ) : (
                   <div
                     className={`text-3xl font-semibold tabular-nums ${
-                      totals.totalRemaining >= 0 ? "text-emerald-600" : "text-rose-600"
+                      totals.totalRemaining >= 0 ? "text-emerald-400" : "text-rose-400"
                     }`}
                   >
                     {formatCurrency(totals.totalRemaining)}
@@ -320,20 +320,20 @@ export default function BudgetPage() {
             {/* 总体进度条 */}
             <div className="mt-6">
               <div className="mb-2 flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">总体预算使用进度</span>
+                <span className="text-slate-400">总体预算使用进度</span>
                 <span
                   className={`font-medium ${
                     totals.overallPercentage >= 100
-                      ? "text-rose-600"
+                      ? "text-rose-400"
                       : totals.overallPercentage >= 80
-                      ? "text-amber-600"
-                      : "text-emerald-600"
+                      ? "text-amber-400"
+                      : "text-emerald-400"
                   }`}
                 >
                   {totals.overallPercentage.toFixed(1)}%
                 </span>
               </div>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-muted">
+              <div className="h-3 w-full overflow-hidden rounded-full bg-white/[0.06]">
                 <div
                   className={`h-full transition-all duration-500 ${getProgressColor(
                     totals.overallPercentage
@@ -348,11 +348,11 @@ export default function BudgetPage() {
         </Card>
 
         {/* 分类预算列表 */}
-        <Card className="rounded-xl shadow-sm">
+        <Card className="glass-card">
           <CardHeader className="flex flex-row items-center justify-between pb-4">
             <div>
-              <CardTitle className="text-base font-medium">分类预算</CardTitle>
-              <CardDescription>点击预算金额可快速编辑</CardDescription>
+              <CardTitle className="text-base font-medium text-slate-200">分类预算</CardTitle>
+              <CardDescription className="text-slate-500">点击预算金额可快速编辑</CardDescription>
             </div>
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger>
@@ -442,10 +442,10 @@ export default function BudgetPage() {
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="h-5 w-24 animate-pulse rounded bg-muted" />
-                      <div className="h-5 w-20 animate-pulse rounded bg-muted" />
+                      <div className="h-5 w-24 animate-pulse rounded bg-white/[0.04]" />
+                      <div className="h-5 w-20 animate-pulse rounded bg-white/[0.04]" />
                     </div>
-                    <div className="h-2 w-full animate-pulse rounded bg-muted" />
+                    <div className="h-2 w-full animate-pulse rounded bg-white/[0.04]" />
                   </div>
                 ))}
               </div>
@@ -460,7 +460,7 @@ export default function BudgetPage() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="text-lg">{budget.categoryIcon || "📁"}</span>
-                          <span className="font-medium">{budget.categoryName}</span>
+                          <span className="font-medium text-slate-200">{budget.categoryName}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           {isEditing ? (
@@ -508,10 +508,10 @@ export default function BudgetPage() {
                                 setEditingBudget(budget);
                                 setEditAmount(budget.amount.toString());
                               }}
-                              className="text-sm tabular-nums text-muted-foreground hover:text-foreground"
+                              className="text-sm tabular-nums text-slate-400 hover:text-slate-200"
                             >
                               {formatCurrency(budget.actualExpense)} /{" "}
-                              <span className="font-medium text-foreground">
+                              <span className="font-medium text-slate-200">
                                 {formatCurrency(budget.amount)}
                               </span>
                             </button>
@@ -519,7 +519,7 @@ export default function BudgetPage() {
                         </div>
                       </div>
                       <div className="relative">
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-muted">
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
                           <div
                             className={`h-full transition-all duration-500 ${getProgressColor(
                               budget.percentage
@@ -536,7 +536,7 @@ export default function BudgetPage() {
                               {status.text}
                             </span>
                           </span>
-                          <span className="text-muted-foreground">
+                          <span className="text-slate-400">
                             剩余 {formatCurrency(budget.remaining)}
                           </span>
                         </div>
@@ -547,11 +547,11 @@ export default function BudgetPage() {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-                  <PiggyBank className="h-8 w-8 text-muted-foreground" />
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/[0.06]">
+                  <PiggyBank className="h-8 w-8 text-slate-500" />
                 </div>
-                <h3 className="text-base font-medium">暂无预算设置</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <h3 className="text-base font-medium text-slate-200">暂无预算设置</h3>
+                <p className="mt-1 text-sm text-slate-500">
                   点击右上角按钮添加分类预算
                 </p>
               </div>

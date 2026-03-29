@@ -41,16 +41,16 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-16 hover:w-56 bg-white border-r border-border transition-all duration-300 ease-in-out group z-50">
+    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-16 hover:w-56 glass border-r border-white/[0.06] transition-all duration-300 ease-in-out group z-50">
       {/* Logo */}
-      <div className="h-16 flex items-center justify-center border-b border-border">
+      <div className="h-16 flex items-center justify-center border-b border-white/[0.06]">
         <Link
           href="/dashboard"
-          className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground font-bold text-lg"
+          className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white font-bold text-lg shadow-lg shadow-blue-500/20"
         >
           记
         </Link>
-        <span className="hidden group-hover:block ml-3 font-semibold text-lg whitespace-nowrap overflow-hidden">
+        <span className="hidden group-hover:block ml-3 font-semibold text-lg whitespace-nowrap overflow-hidden gradient-text">
           记账本
         </span>
       </div>
@@ -59,7 +59,7 @@ export function Sidebar() {
       <nav className="flex-1 py-4 px-2 space-y-1">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const isActive = pathname === item.href || (pathname.startsWith(`${item.href}/`) && !navItems.some((other) => other.href !== item.href && other.href.startsWith(`${item.href}/`) && (pathname === other.href || pathname.startsWith(`${other.href}/`))));
 
           return (
             <Link
@@ -67,10 +67,10 @@ export function Sidebar() {
               href={item.href}
               className={cn(
                 "flex items-center h-11 px-3 rounded-xl transition-all duration-200",
-                "hover:bg-accent hover:text-accent-foreground",
+                "hover:bg-white/[0.06] hover:text-blue-300",
                 isActive
-                  ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
-                  : "text-muted-foreground"
+                  ? "bg-gradient-to-r from-blue-500/20 to-purple-500/10 text-blue-400 border border-blue-500/20 shadow-sm shadow-blue-500/10"
+                  : "text-slate-400"
               )}
             >
               <Icon className="w-5 h-5 flex-shrink-0" />
@@ -83,7 +83,7 @@ export function Sidebar() {
       </nav>
 
       {/* User Profile */}
-      <div className="p-2 border-t border-border">
+      <div className="p-2 border-t border-white/[0.06]">
         <DropdownMenu>
           <DropdownMenuTrigger
             className="w-full h-11 px-3 justify-start rounded-xl hover:bg-accent inline-flex items-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground"

@@ -94,11 +94,11 @@ export default function DashboardPage() {
     <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-6">
       {/* Header */}
       <div className="space-y-1">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text">
           你好，{user?.nickname || "用户"}
         </h1>
-        <p className="text-muted-foreground flex items-center gap-2">
-          <Calendar className="w-4 h-4" />
+        <p className="text-slate-400 flex items-center gap-2">
+          <Calendar className="w-4 h-4 text-blue-400" />
           {formatDate(new Date())}
         </p>
       </div>
@@ -106,45 +106,51 @@ export default function DashboardPage() {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Total Expense */}
-        <Card className="border shadow-sm">
+        <Card className="glass-card">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <TrendingDown className="w-4 h-4 text-rose-500" />
+            <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-rose-500/10 flex items-center justify-center">
+                <TrendingDown className="w-4 h-4 text-rose-400" />
+              </div>
               本月总支出
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl md:text-3xl font-bold text-rose-500 tabular-nums">
+            <p className="text-2xl md:text-3xl font-bold text-rose-400 tabular-nums">
               {isLoading ? "-" : formatCurrency(stats?.totalExpense || 0)}
             </p>
           </CardContent>
         </Card>
 
         {/* Total Income */}
-        <Card className="border shadow-sm">
+        <Card className="glass-card">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-emerald-500" />
+            <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 text-emerald-400" />
+              </div>
               本月总收入
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl md:text-3xl font-bold text-emerald-500 tabular-nums">
+            <p className="text-2xl md:text-3xl font-bold text-emerald-400 tabular-nums">
               {isLoading ? "-" : formatCurrency(stats?.totalIncome || 0)}
             </p>
           </CardContent>
         </Card>
 
         {/* Balance */}
-        <Card className="border shadow-sm">
+        <Card className="glass-card">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Wallet className="w-4 h-4 text-primary" />
+            <CardTitle className="text-sm font-medium text-slate-400 flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                <Wallet className="w-4 h-4 text-blue-400" />
+              </div>
               本月余额
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl md:text-3xl font-bold tabular-nums">
+            <p className="text-2xl md:text-3xl font-bold text-blue-400 tabular-nums">
               {isLoading ? "-" : formatCurrency(stats?.balance || 0)}
             </p>
           </CardContent>
@@ -152,18 +158,18 @@ export default function DashboardPage() {
       </div>
 
       {/* Today's Expense */}
-      <Card className="border shadow-sm">
+      <Card className="glass-card">
         <CardContent className="p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">今日支出</p>
-              <p className="text-xl font-bold text-rose-500 tabular-nums mt-1">
+              <p className="text-sm text-slate-400">今日支出</p>
+              <p className="text-xl font-bold text-rose-400 tabular-nums mt-1">
                 {isLoading ? "-" : formatCurrency(stats?.todayExpense || 0)}
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-muted-foreground">今日收入</p>
-              <p className="text-xl font-bold text-emerald-500 tabular-nums mt-1">
+              <p className="text-sm text-slate-400">今日收入</p>
+              <p className="text-xl font-bold text-emerald-400 tabular-nums mt-1">
                 {isLoading ? "-" : formatCurrency(stats?.todayIncome || 0)}
               </p>
             </div>
@@ -172,13 +178,13 @@ export default function DashboardPage() {
       </Card>
 
       {/* Quick Add Section */}
-      <Card className="border shadow-sm">
+      <Card className="glass-card">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base font-medium">快速记一笔</CardTitle>
+            <CardTitle className="text-base font-medium text-slate-200">快速记一笔</CardTitle>
             <Link
               href="/records/add"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+              className="text-sm text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1"
             >
               <Plus className="w-4 h-4" />
               更多
@@ -191,10 +197,10 @@ export default function DashboardPage() {
               <Link
                 key={cat.id}
                 href={`/records/add?category=${cat.id}&type=expense`}
-                className="flex flex-col items-center gap-2 p-3 rounded-xl bg-muted hover:bg-accent transition-colors"
+                className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] transition-all duration-200 hover:border-blue-500/20"
               >
                 <span className="text-2xl">{cat.icon}</span>
-                <span className="text-xs font-medium text-muted-foreground">
+                <span className="text-xs font-medium text-slate-400">
                   {cat.name}
                 </span>
               </Link>
@@ -204,13 +210,13 @@ export default function DashboardPage() {
       </Card>
 
       {/* Recent Records */}
-      <Card className="border shadow-sm">
+      <Card className="glass-card">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-semibold">最近记录</CardTitle>
+            <CardTitle className="text-lg font-semibold text-slate-200">最近记录</CardTitle>
             <Link
               href="/records"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm text-slate-400 hover:text-blue-400 transition-colors"
             >
               查看全部 →
             </Link>
@@ -222,16 +228,16 @@ export default function DashboardPage() {
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-14 bg-muted rounded-xl animate-pulse"
+                  className="h-14 bg-white/[0.04] rounded-xl animate-pulse"
                 />
               ))}
             </div>
           ) : recentRecords.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
+            <div className="text-center py-12 text-slate-500">
               <p>暂无记录</p>
               <Link
                 href="/records/add"
-                className="text-primary hover:underline mt-2 inline-block"
+                className="text-blue-400 hover:underline mt-2 inline-block"
               >
                 记一笔
               </Link>
@@ -241,15 +247,15 @@ export default function DashboardPage() {
               {recentRecords.map((record) => (
                 <div
                   key={record.id}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-accent/50 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.04] transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center text-lg">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.06] flex items-center justify-center text-lg">
                       {record.categoryIcon || "💰"}
                     </div>
                     <div>
-                      <p className="font-medium">{record.categoryName || "未分类"}</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="font-medium text-slate-200">{record.categoryName || "未分类"}</p>
+                      <p className="text-sm text-slate-500">
                         {record.note || "无备注"}
                       </p>
                     </div>
@@ -258,14 +264,14 @@ export default function DashboardPage() {
                     <p
                       className={`font-semibold tabular-nums ${
                         record.type === "income"
-                          ? "text-emerald-500"
-                          : "text-rose-500"
+                          ? "text-emerald-400"
+                          : "text-rose-400"
                       }`}
                     >
                       {record.type === "income" ? "+" : "-"}
                       {formatCurrency(record.amount)}
                     </p>
-                    <Badge variant="secondary" className="text-xs mt-1">
+                    <Badge variant="secondary" className="text-xs mt-1 bg-white/[0.06] text-slate-400 border-white/[0.06]">
                       {record.userNickname}
                     </Badge>
                   </div>

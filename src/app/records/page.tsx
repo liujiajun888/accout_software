@@ -152,9 +152,9 @@ function RecordsContent() {
     <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">账单</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text">账单</h1>
         <Link href="/records/add">
-          <Button className="hidden md:flex">
+          <Button className="hidden md:flex bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg shadow-blue-500/20">
             <Plus className="w-4 h-4 mr-2" />
             记一笔
           </Button>
@@ -162,11 +162,11 @@ function RecordsContent() {
       </div>
 
       {/* Filters */}
-      <Card className="border shadow-sm">
+      <Card className="glass-card">
         <CardContent className="p-4">
           <div className="flex items-center gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
-            <div className="flex items-center gap-2 text-muted-foreground flex-shrink-0">
-              <Filter className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-slate-400 flex-shrink-0">
+              <Filter className="w-4 h-4 text-blue-400" />
               <span className="text-sm">筛选</span>
             </div>
 
@@ -216,12 +216,12 @@ function RecordsContent() {
         {isLoading ? (
           <div className="space-y-4">
             {[...Array(3)].map((_, i) => (
-              <Card key={i} className="border shadow-sm">
+              <Card key={i} className="glass-card">
                 <CardContent className="p-4">
-                  <div className="h-8 bg-muted rounded animate-pulse mb-4" />
+                  <div className="h-8 bg-white/[0.04] rounded animate-pulse mb-4" />
                   <div className="space-y-3">
                     {[...Array(3)].map((_, j) => (
-                      <div key={j} className="h-14 bg-muted rounded animate-pulse" />
+                      <div key={j} className="h-14 bg-white/[0.04] rounded animate-pulse" />
                     ))}
                   </div>
                 </CardContent>
@@ -229,11 +229,11 @@ function RecordsContent() {
             ))}
           </div>
         ) : Object.keys(groupedRecords).length === 0 ? (
-          <Card className="border shadow-sm">
+          <Card className="glass-card">
             <CardContent className="py-16 text-center">
-              <p className="text-muted-foreground">暂无记录</p>
+              <p className="text-slate-500">暂无记录</p>
               <Link href="/records/add">
-                <Button variant="outline" className="mt-4">
+                <Button variant="outline" className="mt-4 border-white/[0.1] bg-white/[0.04] text-slate-300 hover:bg-white/[0.08]">
                   <Plus className="w-4 h-4 mr-2" />
                   记一笔
                 </Button>
@@ -242,17 +242,17 @@ function RecordsContent() {
           </Card>
         ) : (
           Object.entries(groupedRecords).map(([date, dateRecords]) => (
-            <Card key={date} className="border shadow-sm">
+            <Card key={date} className="glass-card">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-base font-medium">
+                  <CardTitle className="text-base font-medium text-slate-200">
                     {formatDate(date)}
                   </CardTitle>
                   <span
                     className={`text-sm font-medium tabular-nums ${
                       getDailyTotal(dateRecords) >= 0
-                        ? "text-emerald-500"
-                        : "text-rose-500"
+                        ? "text-emerald-400"
+                        : "text-rose-400"
                     }`}
                   >
                     {getDailyTotal(dateRecords) >= 0 ? "+" : ""}
@@ -265,17 +265,17 @@ function RecordsContent() {
                   {dateRecords.map((record) => (
                     <div
                       key={record.id}
-                      className="flex items-center justify-between p-3 rounded-xl hover:bg-accent/50 transition-colors group"
+                      className="flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.04] transition-colors group"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center text-lg">
+                        <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.06] flex items-center justify-center text-lg">
                           {record.categoryIcon || "💰"}
                         </div>
                         <div>
-                          <p className="font-medium">
+                          <p className="font-medium text-slate-200">
                             {record.categoryName || "未分类"}
                           </p>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-sm text-slate-500">
                             {record.note || "无备注"}
                           </p>
                         </div>
@@ -285,14 +285,14 @@ function RecordsContent() {
                           <p
                             className={`font-semibold tabular-nums ${
                               record.type === "income"
-                                ? "text-emerald-500"
-                                : "text-rose-500"
+                                ? "text-emerald-400"
+                                : "text-rose-400"
                             }`}
                           >
                             {record.type === "income" ? "+" : "-"}
                             {formatCurrency(record.amount)}
                           </p>
-                          <Badge variant="secondary" className="text-xs mt-1">
+                          <Badge variant="secondary" className="text-xs mt-1 bg-white/[0.06] text-slate-400 border-white/[0.06]">
                             {record.userNickname}
                           </Badge>
                         </div>
@@ -341,7 +341,7 @@ function RecordsContent() {
           >
             <ChevronLeft className="w-4 h-4" />
           </Button>
-          <span className="text-sm text-muted-foreground">
+          <span className="text-sm text-slate-400">
             {currentPage} / {pagination.totalPages}
           </span>
           <Button
@@ -364,10 +364,10 @@ function RecordsLoading() {
   return (
     <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">账单</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text">账单</h1>
       </div>
       <div className="flex items-center justify-center py-20">
-        <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
       </div>
     </div>
   );

@@ -143,13 +143,13 @@ export default function CategoriesPage() {
     <div className="p-4 md:p-8 max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text">
           分类管理
         </h1>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger
             onClick={() => handleOpenDialog()}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg shadow-blue-500/20 h-9 px-4 py-2 has-[>svg]:px-3"
           >
             <Plus className="w-4 h-4" />
             添加分类
@@ -185,9 +185,9 @@ export default function CategoriesPage() {
                       className={`w-10 h-10 rounded-lg text-xl flex items-center justify-center transition-all ${
                         selectedIcon === icon
                           ? activeTab === "income"
-                            ? "bg-emerald-100 ring-2 ring-emerald-500"
-                            : "bg-rose-100 ring-2 ring-rose-500"
-                          : "bg-muted hover:bg-accent"
+                            ? "bg-emerald-500/15 ring-1 ring-emerald-500/40"
+                            : "bg-rose-500/15 ring-1 ring-rose-500/40"
+                          : "bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06]"
                       }`}
                     >
                       {icon}
@@ -222,16 +222,16 @@ export default function CategoriesPage() {
         onValueChange={(v) => setActiveTab(v as RecordType)}
         className="w-full"
       >
-        <TabsList className="grid w-full grid-cols-2 h-12">
+        <TabsList className="grid w-full grid-cols-2 h-12 bg-white/[0.04] border border-white/[0.06]">
           <TabsTrigger
             value="expense"
-            className="text-base data-[state=active]:bg-rose-500 data-[state=active]:text-white"
+            className="text-base text-slate-400 data-[state=active]:bg-rose-500/20 data-[state=active]:text-rose-400 data-[state=active]:border data-[state=active]:border-rose-500/30"
           >
             支出分类
           </TabsTrigger>
           <TabsTrigger
             value="income"
-            className="text-base data-[state=active]:bg-emerald-500 data-[state=active]:text-white"
+            className="text-base text-slate-400 data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400 data-[state=active]:border data-[state=active]:border-emerald-500/30"
           >
             收入分类
           </TabsTrigger>
@@ -239,9 +239,9 @@ export default function CategoriesPage() {
       </Tabs>
 
       {/* Categories List */}
-      <Card className="border shadow-sm">
+      <Card className="glass-card">
         <CardHeader className="pb-4">
-          <CardTitle className="text-base font-medium">
+          <CardTitle className="text-base font-medium text-slate-200">
             {activeTab === "expense" ? "支出" : "收入"}分类列表
           </CardTitle>
         </CardHeader>
@@ -251,12 +251,12 @@ export default function CategoriesPage() {
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-14 bg-muted rounded-xl animate-pulse"
+                  className="h-14 bg-white/[0.04] rounded-xl animate-pulse"
                 />
               ))}
             </div>
           ) : filteredCategories.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
+            <div className="text-center py-12 text-slate-500">
               <p>暂无{classifyType(activeTab)}分类</p>
               <Button
                 variant="outline"
@@ -272,13 +272,13 @@ export default function CategoriesPage() {
               {filteredCategories.map((category) => (
                 <div
                   key={category.id}
-                  className="flex items-center justify-between p-3 rounded-xl hover:bg-accent/50 transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-white/[0.04] transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center text-xl">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.06] flex items-center justify-center text-xl">
                       {category.icon || "💰"}
                     </div>
-                    <span className="font-medium">{category.name}</span>
+                    <span className="font-medium text-slate-200">{category.name}</span>
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger

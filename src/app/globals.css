@@ -9,15 +9,59 @@
     text-wrap: balance;
   }
   
-  /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
   
-  /* Hide scrollbar for IE, Edge and Firefox */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .glass {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.4) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 0 60px rgba(59, 130, 246, 0.05);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 60px rgba(139, 92, 246, 0.05);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
 }
 
@@ -27,98 +71,57 @@
     --font-sans: var(--font-sans);
   }
   :root {
-    /* 记账应用设计规范 */
-    --background: #FAFAFA;
-    --foreground: #1a1a1a;
-    --card: #ffffff;
-    --card-foreground: #1a1a1a;
-    --popover: #ffffff;
-    --popover-foreground: #1a1a1a;
-    --primary: #1a1a1a;
-    --primary-foreground: #FAFAFA;
-    --secondary: #f5f5f5;
-    --secondary-foreground: #1a1a1a;
-    --muted: #f5f5f5;
-    --muted-foreground: #737373;
-    --accent: #f5f5f5;
-    --accent-foreground: #1a1a1a;
-    --destructive: #e11d48;
-    --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: #a3a3a3;
-    --radius: 0.625rem;
+    /* 深色科技风设计规范 */
+    --background: #0a0f1a;
+    --foreground: #e2e8f0;
+    --card: rgba(15, 23, 42, 0.6);
+    --card-foreground: #e2e8f0;
+    --popover: #0f172a;
+    --popover-foreground: #e2e8f0;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: rgba(30, 41, 59, 0.8);
+    --secondary-foreground: #cbd5e1;
+    --muted: rgba(30, 41, 59, 0.6);
+    --muted-foreground: #94a3b8;
+    --accent: rgba(59, 130, 246, 0.1);
+    --accent-foreground: #93c5fd;
+    --destructive: #ef4444;
+    --border: rgba(255, 255, 255, 0.08);
+    --input: rgba(30, 41, 59, 0.8);
+    --ring: rgba(59, 130, 246, 0.5);
+    --radius: 0.75rem;
     
     /* 收入/支出主题色 */
-    --income: #10b981;
-    --income-foreground: #ffffff;
-    --expense: #f43f5e;
+    --income: #00f5d4;
+    --income-foreground: #0a0f1a;
+    --expense: #ff6b6b;
     --expense-foreground: #ffffff;
     
     /* 图表颜色 */
-    --chart-1: #10b981;
-    --chart-2: #f43f5e;
+    --chart-1: #00f5d4;
+    --chart-2: #ff6b6b;
     --chart-3: #3b82f6;
-    --chart-4: #f59e0b;
-    --chart-5: #8b5cf6;
-    
-    /* sidebar */
-    --sidebar: #ffffff;
-    --sidebar-foreground: #1a1a1a;
-    --sidebar-primary: #1a1a1a;
-    --sidebar-primary-foreground: #FAFAFA;
-    --sidebar-accent: #f5f5f5;
-    --sidebar-accent-foreground: #1a1a1a;
-    --sidebar-border: #e5e5e5;
-    --sidebar-ring: #a3a3a3;
-  }
-  .dark {
-    --background: #0a0a0a;
-    --foreground: #FAFAFA;
-    --card: #171717;
-    --card-foreground: #FAFAFA;
-    --popover: #171717;
-    --popover-foreground: #FAFAFA;
-    --primary: #FAFAFA;
-    --primary-foreground: #0a0a0a;
-    --secondary: #262626;
-    --secondary-foreground: #FAFAFA;
-    --muted: #262626;
-    --muted-foreground: #a3a3a3;
-    --accent: #262626;
-    --accent-foreground: #FAFAFA;
-    --destructive: #f43f5e;
-    --border: #262626;
-    --input: #262626;
-    --ring: #525252;
-    
-    /* 收入/支出主题色 - dark mode */
-    --income: #34d399;
-    --income-foreground: #0a0a0a;
-    --expense: #fb7185;
-    --expense-foreground: #0a0a0a;
-    
-    /* 图表颜色 - dark mode */
-    --chart-1: #34d399;
-    --chart-2: #fb7185;
-    --chart-3: #60a5fa;
     --chart-4: #fbbf24;
     --chart-5: #a78bfa;
     
-    /* sidebar - dark mode */
-    --sidebar: #171717;
-    --sidebar-foreground: #FAFAFA;
-    --sidebar-primary: #60a5fa;
-    --sidebar-primary-foreground: #FAFAFA;
-    --sidebar-accent: #262626;
-    --sidebar-accent-foreground: #FAFAFA;
-    --sidebar-border: #262626;
-    --sidebar-ring: #525252;
+    /* sidebar */
+    --sidebar: rgba(10, 15, 26, 0.95);
+    --sidebar-foreground: #e2e8f0;
+    --sidebar-primary: #3b82f6;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: rgba(59, 130, 246, 0.1);
+    --sidebar-accent-foreground: #93c5fd;
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+    --sidebar-ring: rgba(59, 130, 246, 0.5);
   }
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(135deg, #0a0f1a 0%, #0f172a 50%, #0a0f1a 100%);
+    background-attachment: fixed;
   }
   html {
     @apply font-sans;

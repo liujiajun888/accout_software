@@ -158,19 +158,19 @@ export default function StatisticsPage() {
         formatter: (params: { name: string; value: number; percent: number }) => {
           return `${params.name}<br/>${formatCurrency(params.value)} (${params.percent}%)`;
         },
-        backgroundColor: "#ffffff",
+        backgroundColor: "rgba(15, 23, 42, 0.9)",
         borderColor: "transparent",
         borderWidth: 0,
-        textStyle: { color: "#1a1a1a", fontSize: 13 },
+        textStyle: { color: "#e2e8f0", fontSize: 13 },
         extraCssText:
-          "box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border-radius: 12px; padding: 12px 16px;",
+          "box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(10px);",
       },
       legend: {
         orient: "vertical",
         right: "5%",
         top: "center",
         itemGap: 12,
-        textStyle: { color: "#1a1a1a", fontSize: 12 },
+        textStyle: { color: "#94a3b8", fontSize: 12 },
         formatter: (name: string) => {
           const item = categoryData.find((d) => d.categoryName === name);
           return item ? `${name}  ${item.percentage}%` : name;
@@ -185,7 +185,7 @@ export default function StatisticsPage() {
           avoidLabelOverlap: false,
           itemStyle: {
             borderRadius: 8,
-            borderColor: "#ffffff",
+            borderColor: "rgba(15, 23, 42, 0.8)",
             borderWidth: 2,
           },
           label: {
@@ -219,7 +219,7 @@ export default function StatisticsPage() {
           style: {
             text: chartType === "expense" ? "总支出" : "总收入",
             textAlign: "center",
-            fill: "#737373",
+            fill: "#94a3b8",
             fontSize: 13,
           },
         },
@@ -230,7 +230,7 @@ export default function StatisticsPage() {
           style: {
             text: formatCompactCurrency(total),
             textAlign: "center",
-            fill: "#1a1a1a",
+            fill: "#e2e8f0",
             fontSize: 18,
             fontWeight: 600,
           },
@@ -254,14 +254,14 @@ export default function StatisticsPage() {
         trigger: "axis",
         axisPointer: {
           type: "line",
-          lineStyle: { color: "#e5e5e5", type: "dashed" },
+          lineStyle: { color: "rgba(255, 255, 255, 0.1)", type: "dashed" },
         },
-        backgroundColor: "#ffffff",
+        backgroundColor: "rgba(15, 23, 42, 0.9)",
         borderColor: "transparent",
         borderWidth: 0,
-        textStyle: { color: "#1a1a1a", fontSize: 13 },
+        textStyle: { color: "#e2e8f0", fontSize: 13 },
         extraCssText:
-          "box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border-radius: 12px; padding: 12px 16px;",
+          "box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(10px);",
         formatter: (params: { name: string; value: number; seriesName: string; marker?: string }[]) => {
           let result = params[0].name + "<br/>";
           params.forEach((param) => {
@@ -275,7 +275,7 @@ export default function StatisticsPage() {
         right: 0,
         top: 0,
         itemGap: 20,
-        textStyle: { color: "#1a1a1a", fontSize: 13 },
+        textStyle: { color: "#94a3b8", fontSize: 13 },
       },
       grid: {
         left: "3%",
@@ -290,19 +290,19 @@ export default function StatisticsPage() {
         data: dates,
         axisLine: { show: false },
         axisTick: { show: false },
-        axisLabel: { color: "#737373", fontSize: 12 },
+        axisLabel: { color: "#64748b", fontSize: 12 },
       },
       yAxis: {
         type: "value",
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
-          color: "#737373",
+          color: "#64748b",
           fontSize: 12,
           formatter: (value: number) => formatCompactCurrency(value),
         },
         splitLine: {
-          lineStyle: { color: "#f0f0f0", type: "dashed" },
+          lineStyle: { color: "rgba(255, 255, 255, 0.06)", type: "dashed" },
         },
       },
       series: [
@@ -367,12 +367,12 @@ export default function StatisticsPage() {
       tooltip: {
         trigger: "axis",
         axisPointer: { type: "shadow" },
-        backgroundColor: "#ffffff",
+        backgroundColor: "rgba(15, 23, 42, 0.9)",
         borderColor: "transparent",
         borderWidth: 0,
-        textStyle: { color: "#1a1a1a", fontSize: 13 },
+        textStyle: { color: "#e2e8f0", fontSize: 13 },
         extraCssText:
-          "box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); border-radius: 12px; padding: 12px 16px;",
+          "box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 12px 16px; backdrop-filter: blur(10px);",
         formatter: (params: { name: string; value: number }[]) => {
           return `${params[0].name}<br/>${formatCurrency(params[0].value)}`;
         },
@@ -396,7 +396,7 @@ export default function StatisticsPage() {
         data: sortedData.map((item) => item.categoryName).reverse(),
         axisLine: { show: false },
         axisTick: { show: false },
-        axisLabel: { color: "#1a1a1a", fontSize: 12 },
+        axisLabel: { color: "#e2e8f0", fontSize: 12 },
       },
       series: [
         {
@@ -413,7 +413,7 @@ export default function StatisticsPage() {
             show: true,
             position: "right",
             formatter: (params: { value: number }) => formatCompactCurrency(params.value),
-            color: "#737373",
+            color: "#94a3b8",
             fontSize: 11,
           },
         },
@@ -422,13 +422,13 @@ export default function StatisticsPage() {
   }, [categoryData]);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen p-4 md:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
         {/* 页面标题和筛选器 */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-semibold text-[#1a1a1a]">统计分析</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <h1 className="text-2xl font-semibold gradient-text">统计分析</h1>
+            <p className="mt-1 text-sm text-slate-400">
               查看收支趋势与分类占比
             </p>
           </div>
@@ -436,7 +436,7 @@ export default function StatisticsPage() {
           <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {/* 月份选择器 */}
             <Select value={selectedMonth} onValueChange={(value) => setSelectedMonth(value || "")}>
-              <SelectTrigger className="w-[140px] bg-white flex-shrink-0">
+              <SelectTrigger className="w-[140px] flex-shrink-0">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -450,7 +450,7 @@ export default function StatisticsPage() {
 
             {/* 用户筛选 */}
             <Tabs value={selectedUser} onValueChange={setSelectedUser}>
-              <TabsList className="bg-white flex-shrink-0">
+              <TabsList className="bg-white/[0.04] border border-white/[0.06] flex-shrink-0">
                 <TabsTrigger value="all" className="gap-1.5">
                   <Users className="h-3.5 w-3.5" />
                   全部
@@ -465,11 +465,11 @@ export default function StatisticsPage() {
         {/* 汇总卡片 */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* 总收入 */}
-          <Card className="rounded-xl shadow-sm">
+          <Card className="glass-card">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100">
-                  <TrendingUp className="h-4 w-4 text-emerald-600" />
+              <CardTitle className="flex items-center gap-2 text-sm font-medium text-slate-400">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
+                  <TrendingUp className="h-4 w-4 text-emerald-400" />
                 </div>
                 本月总收入
               </CardTitle>
@@ -478,7 +478,7 @@ export default function StatisticsPage() {
               {loading ? (
                 <Skeleton className="h-9 w-32" />
               ) : (
-                <div className="text-3xl font-semibold tabular-nums text-emerald-600">
+                <div className="text-3xl font-semibold tabular-nums text-emerald-400">
                   {formatCurrency(summary?.totalIncome || 0)}
                 </div>
               )}
@@ -486,11 +486,11 @@ export default function StatisticsPage() {
           </Card>
 
           {/* 总支出 */}
-          <Card className="rounded-xl shadow-sm">
+          <Card className="glass-card">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-100">
-                  <TrendingDown className="h-4 w-4 text-rose-600" />
+              <CardTitle className="flex items-center gap-2 text-sm font-medium text-slate-400">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500/10">
+                  <TrendingDown className="h-4 w-4 text-rose-400" />
                 </div>
                 本月总支出
               </CardTitle>
@@ -499,7 +499,7 @@ export default function StatisticsPage() {
               {loading ? (
                 <Skeleton className="h-9 w-32" />
               ) : (
-                <div className="text-3xl font-semibold tabular-nums text-rose-600">
+                <div className="text-3xl font-semibold tabular-nums text-rose-400">
                   {formatCurrency(summary?.totalExpense || 0)}
                 </div>
               )}
@@ -509,9 +509,9 @@ export default function StatisticsPage() {
           {/* 结余 */}
           <Card className="rounded-xl shadow-sm sm:col-span-2 lg:col-span-1">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
-                  <Wallet className="h-4 w-4 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sm font-medium text-slate-400">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
+                  <Wallet className="h-4 w-4 text-blue-400" />
                 </div>
                 本月结余
               </CardTitle>
@@ -522,7 +522,7 @@ export default function StatisticsPage() {
               ) : (
                 <div
                   className={`text-3xl font-semibold tabular-nums ${
-                    (summary?.balance || 0) >= 0 ? "text-emerald-600" : "text-rose-600"
+                    (summary?.balance || 0) >= 0 ? "text-emerald-400" : "text-rose-400"
                   }`}
                 >
                   {formatCurrency(summary?.balance || 0)}
@@ -535,14 +535,14 @@ export default function StatisticsPage() {
         {/* 图表区域 */}
         <div className="grid gap-6 lg:grid-cols-2">
           {/* 分类占比饼图 */}
-          <Card className="rounded-xl shadow-sm">
+          <Card className="glass-card">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-base font-medium">分类占比</CardTitle>
               <Tabs
                 value={chartType}
                 onValueChange={(v) => setChartType(v as "expense" | "income")}
               >
-                <TabsList className="h-7 bg-muted">
+                <TabsList className="h-7 bg-white/[0.04]">
                   <TabsTrigger value="expense" className="text-xs">
                     支出
                   </TabsTrigger>
@@ -562,7 +562,7 @@ export default function StatisticsPage() {
                   opts={{ renderer: "svg" }}
                 />
               ) : (
-                <div className="flex h-[300px] items-center justify-center text-muted-foreground">
+                <div className="flex h-[300px] items-center justify-center text-slate-500">
                   暂无数据
                 </div>
               )}
@@ -570,7 +570,7 @@ export default function StatisticsPage() {
           </Card>
 
           {/* 分类排行 */}
-          <Card className="rounded-xl shadow-sm">
+          <Card className="glass-card">
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-medium">分类排行</CardTitle>
             </CardHeader>
@@ -584,7 +584,7 @@ export default function StatisticsPage() {
                   opts={{ renderer: "svg" }}
                 />
               ) : (
-                <div className="flex h-[300px] items-center justify-center text-muted-foreground">
+                <div className="flex h-[300px] items-center justify-center text-slate-500">
                   暂无数据
                 </div>
               )}
